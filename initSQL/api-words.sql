@@ -13,7 +13,7 @@ CREATE TABLE players
 (
     id         INT NOT NULL,
     score      INT,
-    user       ENUM ('admin', 'user'),
+    role       ENUM ('admin', 'user'),
     avatar_img VARCHAR(150),
     team_id    INT NOT NULL,
     PRIMARY KEY (id),
@@ -24,11 +24,10 @@ CREATE TABLE games
 (
     id              INT NOT NULL,
     max_tries       INT,
-    difficulty_game INT,
+    difficulty_game ENUM ('low', 'mid', 'high'),
     description     VARCHAR(250),
     PRIMARY KEY (id),
-    CHECK (max_tries BETWEEN 0 AND 6),
-    CHECK (difficulty_game BETWEEN 1 AND 3)
+    CHECK (max_tries BETWEEN 0 AND 6)
 );
 
 CREATE TABLE words

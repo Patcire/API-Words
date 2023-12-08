@@ -2,62 +2,61 @@
 
 CREATE TABLE teams
 (
-    id    INT NOT NULL,
-    name  VARCHAR(50),
-    badge VARCHAR(50),
-    score INT,
-    PRIMARY KEY (id)
+    id_team INT NOT NULL,
+    name    VARCHAR(50),
+    badge   VARCHAR(50),
+    score   INT,
+    PRIMARY KEY (id_team)
 );
 
 CREATE TABLE players
 (
-    id         INT NOT NULL,
+    id_player  INT NOT NULL,
     score      INT,
     role       ENUM ('admin', 'user'),
     avatar_img VARCHAR(150),
-    team_id    INT NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (team_id) REFERENCES teams (id)
+    fk_id_team INT NOT NULL,
+    PRIMARY KEY (id_player),
+    FOREIGN KEY (fk_id_team) REFERENCES teams (id_team)
 );
 
 CREATE TABLE games
 (
-    id              INT NOT NULL,
+    id_game         INT NOT NULL,
     max_tries       INT,
     difficulty_game ENUM ('low', 'mid', 'high'),
     description     VARCHAR(250),
-    PRIMARY KEY (id),
+    PRIMARY KEY (id_game),
     CHECK (max_tries BETWEEN 0 AND 6)
 );
 
 CREATE TABLE words
 (
-    id INT NOT NULL,
-    PRIMARY KEY (id)
+    id_word INT NOT NULL,
+    PRIMARY KEY (id_word)
 );
 
 CREATE TABLE words_games
 (
-    game_id         INT NOT NULL,
-    word_id         INT NOT NULL,
-    difficulty_word INT,
-    PRIMARY KEY (game_id, word_id),
-    CHECK (difficulty_word BETWEEN 1 AND 3),
-    FOREIGN KEY (game_id) REFERENCES games (id),
-    FOREIGN KEY (word_id) REFERENCES words (id)
+    fk_id_game      INT NOT NULL,
+    fk_id_word      INT NOT NULL,
+    difficulty_word ENUM ('low', 'mid', 'high'),
+    PRIMARY KEY (fk_id_game, fk_id_word),
+    FOREIGN KEY (fk_id_game) REFERENCES games (id_game),
+    FOREIGN KEY (fk_id_word) REFERENCES words (id_word)
 );
 
 CREATE TABLE matches
 (
-    id        INT NOT NULL,
-    word      VARCHAR(5),
-    score     INT,
-    n_try     INT,
-    datetime  DATETIME,
-    player_id INT NOT NULL,
-    game_id   INT NOT NULL,
-    PRIMARY KEY (id),
+    id_match     INT NOT NULL,
+    word         VARCHAR(5),
+    score        INT,
+    n_try        INT,
+    date         DATETIME,
+    fk_id_player INT NOT NULL,
+    fk_id_game   INT NOT NULL,
+    PRIMARY KEY (id_match),
     CHECK (n_try BETWEEN 0 AND 6),
-    FOREIGN KEY (game_id) REFERENCES games (id),
-    FOREIGN KEY (player_id) REFERENCES players (id)
+    FOREIGN KEY (fk_id_game) REFERENCES games (id_game),
+    FOREIGN KEY (fk_id_player) REFERENCES players (id_player)
 );

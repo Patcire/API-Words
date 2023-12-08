@@ -1,4 +1,4 @@
-package com.example.apiwords.model;
+package com.example.apiwords.model.classes;
 
 import com.example.apiwords.model.enums.Difficulty;
 import jakarta.persistence.*;
@@ -10,7 +10,6 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Set;
 
 @AllArgsConstructor

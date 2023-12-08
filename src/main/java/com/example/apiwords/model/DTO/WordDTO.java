@@ -1,6 +1,6 @@
 package com.example.apiwords.model.DTO;
 
-import com.example.apiwords.model.Game;
+import com.example.apiwords.model.classes.Game;
 import lombok.Data;
 
 import java.util.Set;

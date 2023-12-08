@@ -1,6 +1,6 @@
 package com.example.apiwords.model.DTO;
 
-import com.example.apiwords.model.Match;
+import com.example.apiwords.model.classes.Match;
 import com.example.apiwords.model.enums.Role;
 import lombok.Data;
 

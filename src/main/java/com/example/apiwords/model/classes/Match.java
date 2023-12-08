@@ -1,4 +1,4 @@
-package com.example.apiwords.model;
+package com.example.apiwords.model.classes;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

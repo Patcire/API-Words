@@ -33,6 +33,7 @@ CREATE TABLE games
 CREATE TABLE words
 (
     id_word INT NOT NULL,
+    word    VARCHAR(5),
     PRIMARY KEY (id_word)
 );
 

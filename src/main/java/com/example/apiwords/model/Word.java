@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +19,10 @@ public class Word {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String word;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "words_games",
+            joinColumns = @JoinColumn(name = "fk_id_word"),
+            inverseJoinColumns = @JoinColumn(name = "fk_id_game"))
+    private Set<Game> games_using_this_word;
 
 }

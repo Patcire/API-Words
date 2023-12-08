@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +30,9 @@ public class Game {
     private Difficulty difficulty;
     @Size(max = 250)
     private String description;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_match")
+    private List<Match> matches_of_that_game;
+    @ManyToMany(mappedBy = "games_using_this_word")
+    private Set<Word> games_using_this_word;
 }

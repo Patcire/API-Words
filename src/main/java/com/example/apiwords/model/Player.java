@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
+import java.util.List;
 
 
 @AllArgsConstructor
@@ -24,5 +25,8 @@ public class Player {
     private Role role;
     @Size(max = 150)
     private String avatar_img;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_match")
+    private List<Match> matches_played;
 
 }

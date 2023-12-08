@@ -1,1 +1,1 @@
-![diagrama](src/main/resources/photos/diagrama-api-words.JPG)
+![diagrama](src/main/resources/photos/diagrama.JPG)

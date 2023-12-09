@@ -1,20 +1,18 @@
 package com.example.apiwords.services;
 
 import com.example.apiwords.model.DTO.PlayerDTO;
-import com.example.apiwords.model.classes.Player;
 import com.example.apiwords.repo.Repo_player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
 
 @Service
-public class services_player {
+public class Services_player {
 
     @Autowired
     private Repo_player repo_player;

@@ -17,7 +17,8 @@ public class Word {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_word")
+    private Integer id_word;
     private String word;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "words_games",

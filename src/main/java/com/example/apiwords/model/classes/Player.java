@@ -19,10 +19,13 @@ public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_player")
+    private Integer id_player;
     private int score;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @Size(max = 20)
+    private String player_name;
     @Size(max = 150)
     private String avatar_img;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

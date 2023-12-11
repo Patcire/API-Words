@@ -21,7 +21,8 @@ public class Game {
     // PONER VALIDATED EN EL CONTROLADOR
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_game")
+    private Integer id_game;
     @Min(0)
     @Max(6)
     private int max_tries;

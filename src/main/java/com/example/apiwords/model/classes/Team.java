@@ -16,7 +16,8 @@ public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_team")
+    private Integer id_team;
     private String name;
     private String badge;
     private int score;

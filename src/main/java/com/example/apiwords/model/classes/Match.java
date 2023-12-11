@@ -19,7 +19,8 @@ public class Match {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Column(name = "id_match")
+    private Integer id_match;
     @Size(max = 5)
     private String word;
     private int score;

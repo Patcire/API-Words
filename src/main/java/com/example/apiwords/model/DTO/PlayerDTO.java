@@ -15,10 +15,14 @@ import java.util.List;
 @Data
 public class PlayerDTO {
 
-    // private Integer id;
+    
     private int score;
     private Role role;
+    private String name;
     private String avatar_img;
     private List<Match> matches_played;
+    private int fk_id_team;
 
 }
+
+

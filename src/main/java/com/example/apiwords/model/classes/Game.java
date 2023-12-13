@@ -1,6 +1,8 @@
 package com.example.apiwords.model.classes;
 
 import com.example.apiwords.model.enums.Difficulty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,17 +24,26 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_game")
-    private Integer id_game;
+    private long id_game;
+
     @Min(0)
     @Max(6)
-    private int max_tries;
+    private long max_tries;
+
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
+
     @Size(max = 250)
     private String description;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_match")
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "fk_id_game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Match> matches_of_that_game;
-    @ManyToMany(mappedBy = "games_using_this_word")
-    private Set<Word> games_using_this_word;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "game",
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private Set<Word_Game> words_used_by_this_game;
 }

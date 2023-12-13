@@ -1,6 +1,7 @@
 package com.example.apiwords.model.classes;
 
 import com.example.apiwords.model.enums.Role;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,16 +21,25 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_player")
-    private Integer id_player;
+    private long id_player;
+
     private int score;
+
     @Enumerated(EnumType.STRING)
     private Role role;
+
     @Size(max = 20)
-    private String player_name;
+    private String name;
+
     @Size(max = 150)
     private String avatar_img;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_match")
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "fk_id_player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Match> matches_played;
+
+
+    @Column(name = "fk_id_team")
+    private long fk_id_team;
 
 }

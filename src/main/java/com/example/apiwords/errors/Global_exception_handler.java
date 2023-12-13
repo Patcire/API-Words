@@ -2,7 +2,7 @@ package com.example.apiwords.errors;
 
 import com.example.apiwords.errors.custom_exceptions.Not_found_exception;
 import com.example.apiwords.errors.custom_exceptions.Not_found_player;
-import com.example.apiwords.errors.custom_exceptions.Player_exist;
+import com.example.apiwords.errors.custom_exceptions.Exist;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -34,8 +34,8 @@ public class Global_exception_handler {
         return new ResponseEntity<>(Error_response, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(value = {Player_exist.class})
-    public ResponseEntity<Error_response> handle_Beer_exist(Player_exist ex) {
+    @ExceptionHandler(value = {Exist.class})
+    public ResponseEntity<Error_response> handle_Beer_exist(Exist ex) {
         Error_response Error_response = new Error_response(HttpStatus.CONFLICT, ex.getMessage());
         Error_response.setCode(HttpStatus.CONFLICT);
         Error_response.setMessage(ex.getMessage());

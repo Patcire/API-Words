@@ -1,5 +1,6 @@
 package com.example.apiwords.model.classes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,12 +18,16 @@ public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_team")
-    private Integer id_team;
+    private long id_team;
+
     private String name;
+
     private String badge;
+
     private int score;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_player")
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "fk_id_team", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Player> player_members;
 
 }

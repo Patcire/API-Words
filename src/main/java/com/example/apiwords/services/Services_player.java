@@ -1,5 +1,6 @@
 package com.example.apiwords.services;
 
+import com.example.apiwords.errors.custom_exceptions.Not_found_exception;
 import com.example.apiwords.errors.custom_exceptions.Not_found_player;
 import com.example.apiwords.errors.custom_exceptions.Exist;
 import com.example.apiwords.model.DTO.PlayerDTO;
@@ -30,14 +31,16 @@ public class Services_player {
 
         return repo_player.findById(id)
                 .map((element) -> model_mapper.map(element, PlayerDTO.class))
-                .orElse(null);
+                .orElseThrow(() -> new Not_found_player("Player with id " + id + "wasn't found"));
 
     }
 
     public List<PlayerDTO> get_all() {
 
-        return repo_player.findAll().stream()
+        List<PlayerDTO> players = repo_player.findAll().stream()
                 .map((element) -> model_mapper.map(element, PlayerDTO.class)).collect(Collectors.toList());
+        if (!players.isEmpty()) return players;
+        throw new Not_found_exception("No players were found");
 
     }
 

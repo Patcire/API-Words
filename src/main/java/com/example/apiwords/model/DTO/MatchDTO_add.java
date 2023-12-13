@@ -6,11 +6,12 @@ import java.util.Date;
 
 
 @Data
-public class MatchDTO {
+public class MatchDTO_add {
 
     private String word;
-    private int score;
+    private Integer score = 0;
     private int n_try;
-    private Date datetime;
+    private long fk_id_game;
+    private long fk_id_player;
 
 }

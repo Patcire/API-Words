@@ -1,10 +1,11 @@
 package com.example.apiwords.model.classes;
 
 import com.example.apiwords.model.enums.Difficulty;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor

@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,8 +32,11 @@ public class Services_team {
 
     public List<TeamDTO> get_all() {
 
-        List<TeamDTO> teams = repo_team.findAll().stream()
-                .map((element) -> model_mapper.map(element, TeamDTO.class)).toList();
+        List<TeamDTO> teams = new ArrayList<>();
+        for (Team element : repo_team.findAll()) {
+            TeamDTO map = model_mapper.map(element, TeamDTO.class);
+            teams.add(map);
+        }
         if (!teams.isEmpty()) return teams;
         else throw new Not_found_exception("No teams were found");
 

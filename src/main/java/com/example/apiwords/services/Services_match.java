@@ -1,6 +1,5 @@
 package com.example.apiwords.services;
 
-import com.example.apiwords.errors.custom_exceptions.Fail_to_load;
 import com.example.apiwords.errors.custom_exceptions.Not_found_exception;
 import com.example.apiwords.model.DTO.MatchDTO;
 import com.example.apiwords.model.DTO.MatchDTO_add;
@@ -12,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,8 +36,11 @@ public class Services_match {
 
     public List<MatchDTO> get_all() {
 
-        List<MatchDTO> matchs = repo_match.findAll().stream()
-                .map((element) -> model_mapper.map(element, MatchDTO.class)).toList();
+        List<MatchDTO> matchs = new ArrayList<>();
+        for (Match element : repo_match.findAll()) {
+            MatchDTO map = model_mapper.map(element, MatchDTO.class);
+            matchs.add(map);
+        }
         if (!matchs.isEmpty()) return matchs;
         else throw new Not_found_exception("No matchs were found");
 

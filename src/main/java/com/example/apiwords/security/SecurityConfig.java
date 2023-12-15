@@ -13,17 +13,34 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
-                .antMatchers("/special/**").hasIpAddress("172.19.0.1")
+
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .and()
-                .logout().logoutSuccessUrl("/login").permitAll();
+                .httpBasic();
+
+
+        // No he conseguido hacer que me funcione. Esto eran las configuraciones que tenía:
+
+                /*
+                // Con estos dos primeras direcciones, permitimos crear un usuario
+                // según el rol deseado
+                .antMatchers(HttpMethod.POST, "http://localhost:8080/admin/create").permitAll()
+                .antMatchers(HttpMethod.POST, "http://localhost:8080/user/create").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
+
+                 */
+
+
     }
 
     @Autowired

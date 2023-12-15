@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/admin")
 @RequiredArgsConstructor
-public class UserController {
+public class User_admin_controller {
 
     private final UserEntityService userEntityService;
     private final UserDtoConverter userDtoConverter;
 
 
-    @PostMapping("/")
-    public GetUserDto nuevoUsuario(@RequestBody CreateUserDto newUser) {
-        return userDtoConverter.convertUserEntityToGetUserDto(userEntityService.nuevoUsuario(newUser));
+    @PostMapping("/create")
+    public GetUserDto new_user(@RequestBody CreateUserDto new_user) {
+        return userDtoConverter.convertUserEntityToGetUserDto(userEntityService.nuevoUsuario(new_user));
 
     }
 

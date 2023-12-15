@@ -21,7 +21,7 @@ public class Load_words {
             // Usar esta ruta si se quieren cargar las 100.000 palabras:
             // load_words_from_file("src/main/resources/files/0_palabras_todas.txt");
             // ATENCIÓN: (tiempo de carga: 32 minutos)
-            load_words_from_file("src/main/resources/files/palabras_v.txt");
+            load_words_from_file("src/main/resources/files/muestra.txt");
         }
     }
 
